@@ -1,17 +1,12 @@
 const fs = require('fs');
-const readline = require('readline').createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+const readlineSync = require('readline-sync');
 
-fs.readFile('todos.json', (err, data) => {
-  const todos = JSON.parse(data);
+const data = fs.readFileSync('todos.json');
+const todos = JSON.parse(data);
 
-  readline.question('您要新增什麼待辦事項？\n', function(answer) {
-    todos.push({title: answer});
-    fs.writeFile('todos.json', JSON.stringify(todos), function(err) {
-      console.log(`新增事項：${answer}`)
-      process.exit();
-    })
-  })
-});
+const answer = readlineSync.question('您要新增什麼待辦事項？\n');
+todos.push({title: answer});
+
+fs.writeFileSync('todos.json', JSON.stringify(todos));
+console.log(`新增事項：${answer}`);
+process.exit();

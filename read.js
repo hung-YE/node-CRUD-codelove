@@ -1,10 +1,10 @@
 const fs = require('fs');
 
-fs.readFile('todos.json', (err, data) => {
-  let todos = JSON.parse(data);
+const data = fs.readFileSync('todos.json');
 
-  console.log('您的代辦事項：')
-  todos.forEach((todo, index) => console.log(`#${index} ${todo.title}`))
+const todos = JSON.parse(data);
 
-  process.exit();
-});
+console.log('您的代辦事項：')
+todos.forEach((todo, index) => console.log(`#${index} ${todo.title}`))
+
+process.exit();
