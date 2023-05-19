@@ -1,11 +1,13 @@
-const colors = require('colors');
-const fs = require('fs');
+module.exports = () => {
+  const colors = require('colors');
+  const fs = require('fs');
 
-const data = fs.readFileSync('todos.json');
+  const data = fs.readFileSync('todos.json');
 
-const todos = JSON.parse(data);
+  const todos = JSON.parse(data);
 
-console.log('您的代辦事項：')
-todos.forEach((todo, index) => console.log(`#${colors.cyan.bold(index)} ${colors.magenta.italic(todo.title)}`))
-
-process.exit();
+  console.log('您的代辦事項：')
+  todos.forEach((todo, index) => console.log(`#${colors.cyan.bold(index)} ${colors.magenta.italic(todo.title)}`));
+  
+  console.log('\n');
+}
